@@ -1,0 +1,57 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "options": {
+        "cwd": "${workspaceFolder}/contest"  // 需要自己建.obj文件夹
+    },
+    "tasks": [
+        {
+            "label": "cmake",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                ".."
+            ]
+        },
+        {
+            "label": "cleanall",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "clean"
+            ]
+        },
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-j8", "TARGET_FILE=${fileBasenameNoExtension}"
+            ]
+        },
+        {
+            "label": "Build",
+            "dependsOrder": "sequence",
+            "dependsOn":[
+                "cmake",
+                "make"
+            ]
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": ["cleanall", "make"],
+            // 在谁的脚本下执行就是谁的basename
+            "command": "${fileDirname}/build_contest/contest",
+            "presentation": {
+              "focus": true
+            },
+            "group": {
+              "kind": "test",
+              "isDefault": true
+            }
+          }
+    ]
+}
