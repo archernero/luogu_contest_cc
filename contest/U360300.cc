@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#define ll long long
 using namespace std;
 
 
@@ -28,7 +29,7 @@ void solution1(uint32_t n, vector<int>& a) {
         cout << a[0] << '\n';
         return;
     }    
-    long long ans = 0;
+    ll ans = 0;
     for (uint32_t i = 0; i < n; i++) {
         // ans += cur_num * ((i + 1) * (1 + n - (i + 1)));
         // 1ll这个需要放到前面才转换类型
@@ -41,7 +42,7 @@ void solution3() {
     int n;
     cin >> n;
 
-    long long res = 0;
+    ll res = 0;
     for(int i = 1; i <= n; i++){
         int x;
         cin >> x;
