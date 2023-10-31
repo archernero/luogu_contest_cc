@@ -5,15 +5,15 @@
 
 using namespace std;
 
-template<class InputIterator, class UnaryPredicate>
-InputIterator find_all (InputIterator first, InputIterator last, UnaryPredicate pred)
-{
-    while (first!=last) {
-        if (pred(*first)) return first;
-        ++first;
-    }
-    return last;
-}
+// template<class InputIterator, class UnaryPredicate>
+// InputIterator find_if (InputIterator first, InputIterator last, UnaryPredicate pred)
+// {
+//     while (first!=last) {
+//         if (pred(*first)) return first;
+//         ++first;
+//     }
+//     return last;
+// }
 
 
 int main(int argc, char const *argv[])
@@ -36,7 +36,7 @@ int main(int argc, char const *argv[])
     std::copy_if(a.begin(), a.end(), std::back_inserter(matches), [](const string& i) {
         return stoi(i) % 2 == 0;
     });
-    
+
     for (string& tmp: matches) {
         cout << tmp << endl;
     }
