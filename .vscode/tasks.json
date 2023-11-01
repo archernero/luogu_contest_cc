@@ -3,8 +3,8 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "options": {
-        "cwd": "${workspaceFolder}/test"  // 需要自己建.obj文件夹
-        // "cwd": "${workspaceFolder}/contest"  // 需要自己建.obj文件夹
+        "cwd": "${fileDirname}"  // 自动化进入当前文件的目录
+        // "cwd": "${workspaceFolder}/${fileDirnameBasename}"  // 自动化进入测试的工程目录
     },
     "tasks": [
         {
@@ -45,8 +45,12 @@
             "dependsOrder": "sequence",
             "dependsOn": ["cleanall", "make"],
             // 在谁的脚本下执行就是谁的basename
-            "command": "${fileDirname}/build_test/test",
-            // "command": "${fileDirname}/build_contest/contest",
+            // "command": "${fileDirname}/${fileBasenameNoExtension}",
+
+            // https://code.visualstudio.com/docs/editor/variables-reference
+            // /Users/xiaotongl/Desktop/xiaotongl/cc/luogu_contest_cc/contest/build_contest/contest
+            "command": "${fileDirname}/build_${fileDirnameBasename}/${fileDirnameBasename}",
+
             "presentation": {
               "focus": true
             },
