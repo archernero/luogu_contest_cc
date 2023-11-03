@@ -64,8 +64,9 @@ void solution(int n, const vector<vector<int> >& data) {
     }
     mem.emplace_back(tmp1);
   }
+
   // 因为每次只能向下或者向右,并且还有边界限制,因此从左上角到右下角的不管什么路径,步数一定是相同的 [这个思路太重要了]
-  // 
+
   // auto robot = [&](int x1, int y1, int x2, int y2) {
   //     if (mem[x1][y1][x2][y2] != -1) {
   //         return mem[x1][y1][x2][y2];
@@ -76,8 +77,8 @@ void solution(int n, const vector<vector<int> >& data) {
   //     if (x1 < n - 1 && x2 < n - 1) {
   //         res = max(res, robot(x1 + 1, y1, x2 + 1, y2))
   //     }
-
   // };
+  
   cout << robot(n, mem, data, 0, 0, 0, 0) + data[0][0] << endl;
 }
 
