@@ -78,7 +78,7 @@ void solution(int n, const vector<vector<int> >& data) {
   //         res = max(res, robot(x1 + 1, y1, x2 + 1, y2))
   //     }
   // };
-  
+
   cout << robot(n, mem, data, 0, 0, 0, 0) + data[0][0] << endl;
 }
 
