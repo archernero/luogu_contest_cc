@@ -15,6 +15,17 @@ using namespace std;
 //     return last;
 // }
 
+void test_vector() {
+    vector<int> a;
+    a.reserve(10);
+    for (int i = 0; i < 10; i++) {
+        a.emplace_back(i);
+    }
+    reverse(a.begin(), a.end());
+    cout << a.back() << endl;
+}
+
+
 
 int main(int argc, char const *argv[])
 {
@@ -32,14 +43,16 @@ int main(int argc, char const *argv[])
     //     return stoi(i) % 2 == 0;
     // });
 
-    std::vector<string> matches;
-    std::copy_if(a.begin(), a.end(), std::back_inserter(matches), [](const string& i) {
-        return stoi(i) % 2 == 0;
-    });
+    // std::vector<string> matches;
+    // std::copy_if(a.begin(), a.end(), std::back_inserter(matches), [](const string& i) {
+    //     return stoi(i) % 2 == 0;
+    // });
 
-    for (string& tmp: matches) {
-        cout << tmp << endl;
-    }
+    // for (string& tmp: matches) {
+    //     cout << tmp << endl;
+    // }
     
+    test_vector();
+
     return 0;
 }
