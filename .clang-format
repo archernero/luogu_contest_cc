@@ -1,4 +1,6 @@
 # 参考：https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# clang-format -i --style=file <file>
+# e.g clang-format -i --style=file contest/U360300.cc
 ---
 # Google基础编码规范 --- 表示语言区分
 BasedOnStyle: Google
@@ -37,6 +39,7 @@ SpacesBeforeTrailingComments: 2
 
 # 注释不对齐，仅跟行尾;距离两个空格
 AlignTrailingComments: false
+# AlignTrailngComments: true
 ---
 Language: Proto
 ColumnLimit: 0
