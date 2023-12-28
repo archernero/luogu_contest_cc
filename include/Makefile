@@ -1,37 +1,37 @@
-# ÏîÄ¿¸ùÄ¿Â¼
+# é¡¹ç›®æ ¹ç›®å½•
 SOURCE_ROOT  := $(shell pwd)
-# build + ¸ùÄ¿Â¼ÃûÊÇÏîÄ¿µÄbuildÄ¿Â¼ ÓÃÓÚ·Å¶ş½øÖÆÎÄ¼ş => Ë³±ã·½±ãgit ignore
+# build + æ ¹ç›®å½•åæ˜¯é¡¹ç›®çš„buildç›®å½• ç”¨äºæ”¾äºŒè¿›åˆ¶æ–‡ä»¶ => é¡ºä¾¿æ–¹ä¾¿git ignore
 BUILD_DIR    :=  build_$(notdir $(SOURCE_ROOT))
-# ÏîÄ¿buildµÄ¾ø¶ÔÂ·¾¶
+# é¡¹ç›®buildçš„ç»å¯¹è·¯å¾„
 BUILD_DIR_ABS := $(SOURCE_ROOT)/$(BUILD_DIR)
-# ¿ÉÖ´ĞĞÎÄ¼şÓÃ¸ùÄ¿Â¼ÎÄ¼şÃüÃû
+# å¯æ‰§è¡Œæ–‡ä»¶ç”¨æ ¹ç›®å½•æ–‡ä»¶å‘½å
 TARGET := $(BUILD_DIR_ABS)/$(notdir $(SOURCE_ROOT))
 
 CC ?= gcc
 CXX ?= g++
 CFLAGS := -fPIC -pthread -std=c11 -g -Wall -Wextra -pedantic -O3 -ftree-vectorize -ffast-math -mavx -mfma -mavx2
 # man gcc
-# -g Ñ¡Ïî¸æËßg++²úÉúµ÷ÊÔĞÅÏ¢£¬ÒÔµ÷ÊÔ³ÌĞò
-# -O[n]ÓÅ»¯Ô´´úÂë ÔÚµ÷ÊÔ¹ı³ÌÖĞ×¢Òâ¹Ø±Õ
-# -l ÓÃÀ´Ö¸¶¨³ÌĞòÒªÁ´½ÓµÄ¿â£¬½ô½ÓµÄ¾ÍÊÇ¿âÃû ÔÚ/libºÍ/usr/libºÍ/usr/local/libÀïµÄ¿âÖ±½ÓÓÃ-l¾ÍÄÜÁ´½Ó
-# Èç¹û¿âÎÄ¼şÃ»ÓĞ·ÅÔÚÉÏÃæÈı¸öÄ¿Â¼ÖĞ£¬ĞèÒªÊ¹ÓÃ-L²ÎÊıÖ¸¶¨¿âÎÄ¼şËùÔÚÄ¿Â¼ -LºóÃæ½ÓµÄ¾ÍÊÇ¿âÎÄ¼şËùÔÚµÄÄ¿Â¼Ãû
+# -g é€‰é¡¹å‘Šè¯‰g++äº§ç”Ÿè°ƒè¯•ä¿¡æ¯ï¼Œä»¥è°ƒè¯•ç¨‹åº
+# -O[n]ä¼˜åŒ–æºä»£ç  åœ¨è°ƒè¯•è¿‡ç¨‹ä¸­æ³¨æ„å…³é—­
+# -l ç”¨æ¥æŒ‡å®šç¨‹åºè¦é“¾æ¥çš„åº“ï¼Œç´§æ¥çš„å°±æ˜¯åº“å åœ¨/libå’Œ/usr/libå’Œ/usr/local/libé‡Œçš„åº“ç›´æ¥ç”¨-lå°±èƒ½é“¾æ¥
+# å¦‚æœåº“æ–‡ä»¶æ²¡æœ‰æ”¾åœ¨ä¸Šé¢ä¸‰ä¸ªç›®å½•ä¸­ï¼Œéœ€è¦ä½¿ç”¨-Lå‚æ•°æŒ‡å®šåº“æ–‡ä»¶æ‰€åœ¨ç›®å½• -Låé¢æ¥çš„å°±æ˜¯åº“æ–‡ä»¶æ‰€åœ¨çš„ç›®å½•å
 # e.g g++ -L/home/xiaotongl/testlibfolder -lmytest test.cc
-# -I Ö¸¶¨Í·ÎÄ¼şµÄËÑË÷Ä¿Â¼ Í·ÎÄ¼ş¿ÉÒÔÓÃÏà¶ÔÂ·¾¶ ±ÈÈçÍ·ÎÄ¼şÔÚµ±Ç°Ä¿Â¼£¬¿ÉÒÔÓÃ-I.À´Ö¸¶¨
-# -Wall ´òÓ¡¾¯¸æĞÅÏ¢
-# -w ¹Ø±ÕËùÓĞ¾¯¸æĞÅÏ¢
-# -std=c++11ÉèÖÃ±àÒë±ê×¼
-# -o Ö¸¶¨Êä³öÎÄ¼şÃû
+# -I æŒ‡å®šå¤´æ–‡ä»¶çš„æœç´¢ç›®å½• å¤´æ–‡ä»¶å¯ä»¥ç”¨ç›¸å¯¹è·¯å¾„ æ¯”å¦‚å¤´æ–‡ä»¶åœ¨å½“å‰ç›®å½•ï¼Œå¯ä»¥ç”¨-I.æ¥æŒ‡å®š
+# -Wall æ‰“å°è­¦å‘Šä¿¡æ¯
+# -w å…³é—­æ‰€æœ‰è­¦å‘Šä¿¡æ¯
+# -std=c++11è®¾ç½®ç¼–è¯‘æ ‡å‡†
+# -o æŒ‡å®šè¾“å‡ºæ–‡ä»¶å
 
 # https://blog.csdn.net/wuu19/article/details/118252637
-# -Wno-unused-variable£º²»ÏÔÊ¾Î´Ê¹ÓÃµÄ±äÁ¿¸æ¾¯
-# -Wno-unused-parameter£º²»ÏÔÊ¾Î´Ê¹ÓÃµÄ²ÎÊı¸æ¾¯
-# -Wno-unused-function£º²»ÏÔÊ¾Î´Ê¹ÓÃµÄº¯Êı¸æ¾¯
-# -Wno-unused-but-set-variable£º²»ÏÔÊ¾ÒÑ¸³Öµµ«Î´Ê¹ÓÃµÄ±äÁ¿¸æ¾¯
-# -Wno-unused-private-field£º²»ÏÔÊ¾Î´Ê¹ÓÃµÄÀàË½ÓĞ³ÉÔ±¸æ¾¯
-# -Wno-unused-label£º²»ÏÔÊ¾Î´Ê¹ÓÃµÄÌø×ª±ê¼Ç¸æ¾¯
+# -Wno-unused-variableï¼šä¸æ˜¾ç¤ºæœªä½¿ç”¨çš„å˜é‡å‘Šè­¦
+# -Wno-unused-parameterï¼šä¸æ˜¾ç¤ºæœªä½¿ç”¨çš„å‚æ•°å‘Šè­¦
+# -Wno-unused-functionï¼šä¸æ˜¾ç¤ºæœªä½¿ç”¨çš„å‡½æ•°å‘Šè­¦
+# -Wno-unused-but-set-variableï¼šä¸æ˜¾ç¤ºå·²èµ‹å€¼ä½†æœªä½¿ç”¨çš„å˜é‡å‘Šè­¦
+# -Wno-unused-private-fieldï¼šä¸æ˜¾ç¤ºæœªä½¿ç”¨çš„ç±»ç§æœ‰æˆå‘˜å‘Šè­¦
+# -Wno-unused-labelï¼šä¸æ˜¾ç¤ºæœªä½¿ç”¨çš„è·³è½¬æ ‡è®°å‘Šè­¦
 # error: undefined symbol: std::__cxx11 https://blog.csdn.net/Three_dog/article/details/104701644
 
-# [TODO] Ëæ×ÅMakefile·ÅµÄÄ¿Â¼Éî¶È²»Í¬, ÕâÀï»á³öÏÖÄ¿Â¼²»Ò»ÖÂµÄÎÊÌâ
+# [TODO] éšç€Makefileæ”¾çš„ç›®å½•æ·±åº¦ä¸åŒ, è¿™é‡Œä¼šå‡ºç°ç›®å½•ä¸ä¸€è‡´çš„é—®é¢˜
 CXXFLAGS_DEBUG := -fPIC -pthread -std=c++11 -g -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter -Wno-unused-function -Wno-unused-private-field -Wno-unused-label -pedantic -ftree-vectorize -ffast-math -mavx -mfma -mavx2 -I.
 CXXFLAGS_DEBUG += \
 -I$(SOURCE_ROOT)/../include \
@@ -45,39 +45,39 @@ CXXFLAGS += \
 ODIR=.obj
 
 # SOURCES := $(wildcard $(SRC)/*.c)
-# ËüµÄÓÃ·¨ÊÇ£º$(wildcard PATTERN...) ¡£ÔÚMakefileÖĞ£¬
-# Ëü±»Õ¹¿ªÎªÒÑ¾­´æÔÚµÄ¡¢Ê¹ÓÃ¿Õ¸ñ·Ö¿ªµÄ¡¢Æ¥Åä´ËÄ£Ê½µÄËùÓĞÎÄ¼şÁĞ±í¡£Èç¹û²»´æÔÚÈÎºÎ·ûºÏ´ËÄ£Ê½µÄÎÄ¼ş£¬º¯Êı»áºöÂÔÄ£Ê½×Ö·û²¢·µ»Ø¿Õ¡£
-# Ò»°ãÎÒÃÇ¿ÉÒÔÊ¹ÓÃ¡°$(wildcard *.c)¡±À´»ñÈ¡¹¤×÷Ä¿Â¼ÏÂµÄËùÓĞµÄ.cÎÄ¼şÁĞ±í¡£
+# å®ƒçš„ç”¨æ³•æ˜¯ï¼š$(wildcard PATTERN...) ã€‚åœ¨Makefileä¸­ï¼Œ
+# å®ƒè¢«å±•å¼€ä¸ºå·²ç»å­˜åœ¨çš„ã€ä½¿ç”¨ç©ºæ ¼åˆ†å¼€çš„ã€åŒ¹é…æ­¤æ¨¡å¼çš„æ‰€æœ‰æ–‡ä»¶åˆ—è¡¨ã€‚å¦‚æœä¸å­˜åœ¨ä»»ä½•ç¬¦åˆæ­¤æ¨¡å¼çš„æ–‡ä»¶ï¼Œå‡½æ•°ä¼šå¿½ç•¥æ¨¡å¼å­—ç¬¦å¹¶è¿”å›ç©ºã€‚
+# ä¸€èˆ¬æˆ‘ä»¬å¯ä»¥ä½¿ç”¨â€œ$(wildcard *.c)â€æ¥è·å–å·¥ä½œç›®å½•ä¸‹çš„æ‰€æœ‰çš„.cæ–‡ä»¶åˆ—è¡¨ã€‚
 SOURCES := $(TARGET_FILE).cc
-# patsubst Ä£Ê½Ìæ»» ==> (Ô´Ä£Ê½£¬ Ä¿±êÄ£Ê½£¬ ÎÄ¼şÁĞ±í) ¼ÇµÃµÚÒ»´ÎÔËĞĞĞÂ½¨.objÎÄ¼ş¼Ğ
+# patsubst æ¨¡å¼æ›¿æ¢ ==> (æºæ¨¡å¼ï¼Œ ç›®æ ‡æ¨¡å¼ï¼Œ æ–‡ä»¶åˆ—è¡¨) è®°å¾—ç¬¬ä¸€æ¬¡è¿è¡Œæ–°å»º.objæ–‡ä»¶å¤¹
 OBJECTS := $(ODIR)/$(TARGET_FILE).o
 # OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-# °ÑÏÂÃæµÄËùÓĞµÄjobÃû³Æ¶¼¼Ó½øÀ´ Õâ¸ö¶«Î÷ÆäÊµ¾ÍÊÇ·ÀÖ¹jobÃû³ÆÓëÎÄ¼şÃû³Æ³åÍ»µ¼ÖÂÖ¸Áî²»Ö´ĞĞ£¬ËùÒÔ¶¼¼Ó½øÀ´¼´¿É
-# ×ï¿ı»öÊ×ÔÚÕâÀï .bashrcÀïÃæ×Ô¶¯¸øÄãaliasÁË µ¼ÖÂÃ¿´ÎmakeÇ°¶¼ĞèÒªcleanall ÏßÉÏÊ¹ÓÃÆäÊµ±àÒëÇ°ÊÇĞèÒªcleanallµÄ
-# ×Ô¼º²âÊÔÎªÁËÌáÉıËÙ¶È¾Í²»½øĞĞcleanallÁË nonono 
-# ¾ÍÊÇÒªÃ¿´Î¶¼ÒªcleanallÇå³ıÖØĞÂ±àÒë£¬²»È»´úÂëÓĞµÄÊ±ºò²»ÉúĞ§
+# æŠŠä¸‹é¢çš„æ‰€æœ‰çš„jobåç§°éƒ½åŠ è¿›æ¥ è¿™ä¸ªä¸œè¥¿å…¶å®å°±æ˜¯é˜²æ­¢jobåç§°ä¸æ–‡ä»¶åç§°å†²çªå¯¼è‡´æŒ‡ä»¤ä¸æ‰§è¡Œï¼Œæ‰€ä»¥éƒ½åŠ è¿›æ¥å³å¯
+# ç½ªé­ç¥¸é¦–åœ¨è¿™é‡Œ .bashrcé‡Œé¢è‡ªåŠ¨ç»™ä½ aliasäº† å¯¼è‡´æ¯æ¬¡makeå‰éƒ½éœ€è¦cleanall çº¿ä¸Šä½¿ç”¨å…¶å®ç¼–è¯‘å‰æ˜¯éœ€è¦cleanallçš„
+# è‡ªå·±æµ‹è¯•ä¸ºäº†æå‡é€Ÿåº¦å°±ä¸è¿›è¡Œcleanalläº† nonono 
+# å°±æ˜¯è¦æ¯æ¬¡éƒ½è¦cleanallæ¸…é™¤é‡æ–°ç¼–è¯‘ï¼Œä¸ç„¶ä»£ç æœ‰çš„æ—¶å€™ä¸ç”Ÿæ•ˆ
 # alias make="make cleanall; make -j8"
 .PHONY: all clean
 
-# main¾ÍÊÇ×îÖÕÉú³ÉµÄ¿ÉÖ´ĞĞÎÄ¼şÃû
+# mainå°±æ˜¯æœ€ç»ˆç”Ÿæˆçš„å¯æ‰§è¡Œæ–‡ä»¶å
 all: $(TARGET)
 
 # LDFLAGS += -L$(SOURCE_ROOT)/../../lib -lprotobuf -lgrpc++ -lgrpc -laddress_sorting -lupb -lgpr -lssl -ldl -pthread -lcrypto -ldl -pthread -lre2 -lcares -lz -labsl_raw_hash_set -labsl_hashtablez_sampler -labsl_hash -labsl_city -labsl_low_level_hash -labsl_random_distributions -labsl_random_seed_sequences -labsl_random_internal_pool_urbg -labsl_random_internal_randen -labsl_random_internal_randen_hwaes -labsl_random_internal_randen_hwaes_impl -labsl_random_internal_randen_slow -labsl_random_internal_platform -labsl_random_internal_seed_material -labsl_random_seed_gen_exception -labsl_statusor -labsl_status -labsl_cord -labsl_cordz_info -labsl_cord_internal -labsl_cordz_functions -labsl_exponential_biased -labsl_cordz_handle -labsl_crc_cord_state -labsl_crc32c -labsl_crc_internal -labsl_crc_cpu_detect -labsl_bad_optional_access -labsl_strerror -labsl_str_format_internal -labsl_synchronization -labsl_graphcycles_internal -labsl_stacktrace -labsl_symbolize -labsl_debugging_internal -labsl_demangle_internal -labsl_malloc_internal -labsl_time -labsl_civil_time -labsl_strings -labsl_strings_internal -lrt -labsl_base -labsl_spinlock_wait -labsl_int128 -labsl_throw_delegate -labsl_time_zone -labsl_bad_variant_access -labsl_raw_logging_internal -labsl_log_severity 
 # LDFLAGS += -pthread -ldl
 
-# ÕâÒ»²½¼ÓÉÏĞèÒªÒıÈëµÄ¾²Ì¬Á´½Ó¿â
-# $^ Õâ¸ö²ÎÊıÒ»¶¨Òª·Åµ½×îÇ°Ãæ ¼´g++ºó
+# è¿™ä¸€æ­¥åŠ ä¸Šéœ€è¦å¼•å…¥çš„é™æ€é“¾æ¥åº“
+# $^ è¿™ä¸ªå‚æ•°ä¸€å®šè¦æ”¾åˆ°æœ€å‰é¢ å³g++å
 # $(CXX) $^ $(LDFLAGS) -o $@ 
 $(TARGET): $(OBJECTS)
 	@mkdir -p $(@D)
 	$(CXX) $^ -o $@ 
 
-# $@´ú±íÊä³öÎÄ¼ş
-# ±íÊ¾"$D"µÄÄ¿Â¼²¿·Ö£¨²»ÒÔĞ±¸Ü×÷Îª½áÎ²£©
-# ÒÀÀµÄ¿±êÖĞµÄµÚÒ»¸öÄ¿±êÃû×Ö¡£Èç¹ûÒÀÀµÄ¿±êÊÇÒÔÄ£Ê½£¨¼´"%"£©¶¨ÒåµÄ£¬ÄÇÃ´"$<"½«ÊÇ·ûºÏÄ£Ê½µÄÒ»ÏµÁĞµÄÎÄ¼ş¼¯¡£×¢Òâ£¬ÆäÊÇÒ»¸öÒ»¸öÈ¡³öÀ´µÄ¡£
-# -c ±àÒëÆ÷²úÉú.oÄ¿±êÎÄ¼ş
-# Ç°ºó%ºÅÆ¥ÅäµÄ
+# $@ä»£è¡¨è¾“å‡ºæ–‡ä»¶
+# è¡¨ç¤º"$D"çš„ç›®å½•éƒ¨åˆ†ï¼ˆä¸ä»¥æ–œæ ä½œä¸ºç»“å°¾ï¼‰
+# ä¾èµ–ç›®æ ‡ä¸­çš„ç¬¬ä¸€ä¸ªç›®æ ‡åå­—ã€‚å¦‚æœä¾èµ–ç›®æ ‡æ˜¯ä»¥æ¨¡å¼ï¼ˆå³"%"ï¼‰å®šä¹‰çš„ï¼Œé‚£ä¹ˆ"$<"å°†æ˜¯ç¬¦åˆæ¨¡å¼çš„ä¸€ç³»åˆ—çš„æ–‡ä»¶é›†ã€‚æ³¨æ„ï¼Œå…¶æ˜¯ä¸€ä¸ªä¸€ä¸ªå–å‡ºæ¥çš„ã€‚
+# -c ç¼–è¯‘å™¨äº§ç”Ÿ.oç›®æ ‡æ–‡ä»¶
+# å‰å%å·åŒ¹é…çš„
 # https://blog.csdn.net/qq_39498080/article/details/79237260
 $(OBJECTS): $(SOURCES)
 	@mkdir -p $(@D)
