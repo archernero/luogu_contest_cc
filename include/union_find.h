@@ -41,6 +41,8 @@ class WeightedQuickUnionUF {
 
   bool connected(int p, int q) { return find(p) == find(q); }
 
+  const vector<int>& get_ids() { return ids_; }
+
   /*
    * 返回所有图的数量 [独立节点算一个图]
    */
@@ -78,6 +80,55 @@ class WeightedQuickUnionUF {
       }
     }
   }
+
+ private:
+  int count_;  // 节点的数量
+  vector<int> ids_;  // 父链接数组
+  vector<int> sz_;  // (由触点索引的)各个根节点所对应的分量的大小
+};
+
+// 刷题精简版
+class UnionFind {
+ public:
+  UnionFind(int n) {
+    // 初始化链接数组和统计数组
+    count_ = n;
+    ids_.reserve(n);
+    for (int i = 0; i < n; i++) {
+      ids_.emplace_back(i);
+    }
+    sz_.reserve(n);
+    for (int i = 0; i < n; i++) {
+      sz_.emplace_back(i);
+    }
+  }
+  virtual ~UnionFind(){};
+
+  int find(int p) {
+    while (p != ids_[p]) {
+      p = ids_[p];
+    }
+    return p;
+  }
+
+  void union_func(int p, int q) {
+    int i = find(p);
+    int j = find(q);
+    if (i == j) return;
+    if (sz_[i] < sz_[j]) {
+      ids_[i] = j;
+      sz_[j] += sz_[i];
+    } else {
+      ids_[j] = i;
+      sz_[i] += sz_[j];
+    }
+  }
+
+  bool connected(int p, int q) { return find(p) == find(q); }
+
+  const vector<int>& get_ids() { return ids_; }
+
+  const vector<int>& get_sz() { return sz_; }
 
  private:
   int count_;  // 节点的数量
