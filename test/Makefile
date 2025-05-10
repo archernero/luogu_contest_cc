@@ -40,7 +40,7 @@ CXXFLAGS_DEBUG += \
 
 CXXFLAGS := -fPIC -pthread -std=c++11 -g -Wall -Wextra -pedantic -O3 -ftree-vectorize -ffast-math -mavx -mfma -mavx2 -I.
 CXXFLAGS += \
--I$(SOURCE_ROOT)/../include \
+-I$(SOURCE_ROOT)/.. \
 -I$(SOURCE_ROOT)
 
 ODIR=.obj

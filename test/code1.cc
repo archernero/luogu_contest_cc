@@ -7,7 +7,6 @@
 #include <assert.h>
 
 #include "include/union_find.h"
-#include "proto/addressbook.pb.h"
 using namespace std;
 
 void test_assert() {
@@ -36,12 +35,6 @@ void test_assert() {
             printf("Failed fetch hot query key %s \n", key.c_str());
         }
     }
-}
-
-void debug_proto() {
-    tutorial::Person p;
-    p.set_name("nero");
-    p.set_id(123);
 }
 
 
