@@ -68,6 +68,8 @@
         "type_traits": "cpp",
         "algorithm": "cpp",
         "__availability": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "iomanip": "cpp",
+        "execution": "cpp"
     }
 }

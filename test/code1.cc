@@ -36,7 +36,6 @@ void test_assert() {
             printf("Failed fetch hot query key %s \n", key.c_str());
         }
     }
-
 }
 
 void debug_proto() {
