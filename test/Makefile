@@ -33,7 +33,7 @@ CFLAGS := -fPIC -pthread -std=c17 -g -Wall -Wextra -pedantic -O3 -ftree-vectoriz
 
 # [TODO] 随着Makefile放的目录深度不同, 这里会出现目录不一致的问题
 # -I$(SOURCE_ROOT)/../include
-CXXFLAGS_DEBUG := -fPIC -pthread -std=c++11 -g -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter -Wno-unused-function -Wno-unused-private-field -Wno-unused-label -pedantic -ftree-vectorize -ffast-math -mavx -mfma -mavx2 -I.
+CXXFLAGS_DEBUG := -fPIC -pthread -std=c++11 -g -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter -Wno-unused-function -Wno-unused-private-field -Wno-unused-label -pedantic -ftree-vectorize -ffast-math -I.
 CXXFLAGS_DEBUG += \
 -I$(SOURCE_ROOT)/.. \
 -I$(SOURCE_ROOT)

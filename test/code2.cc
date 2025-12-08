@@ -79,14 +79,13 @@ void test4() {
     }
 }
 
-long get_tomorrow_time() 
-{  
+long get_tomorrow_time() {  
     time_t t = time(NULL); 
     t += 86400;
     struct tm* tm = localtime(&t);  
     tm->tm_hour = 0;  
-    tm->tm_min = 1;  
-    tm->tm_sec = 0;
+    tm->tm_min = 0;  
+    tm->tm_sec = 1;
     return mktime(tm); 
 }
 
@@ -235,8 +234,8 @@ void test_share_ptr_vector() {
 // command + shift + p
 int main(int argc, char const *argv[])
 {
-    // long x = get_tomorrow_time();
-    // cout << x << endl;
+    long tomorrow_time = get_tomorrow_time();
+    cout << tomorrow_time << endl;
 
     // std::time_t t = time(nullptr);
     // std::string format_string = "_%Y%m%d";

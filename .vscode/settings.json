@@ -70,6 +70,10 @@
         "__availability": "cpp",
         "functional": "cpp",
         "iomanip": "cpp",
-        "execution": "cpp"
+        "execution": "cpp",
+        "deque": "cpp",
+        "print": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
     }
 }
