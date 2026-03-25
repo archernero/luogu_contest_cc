@@ -170,6 +170,62 @@ void test_valid_play() {
     std::cout << "*********** test_valid_play end **************\n" << endl;
 }
 
+template <typename C>
+void split_string(const std::string& s, char const* d, C* ret,
+                  uint32_t max_count = 0) {
+  C output;
+  std::bitset<256> delims;
+
+  while (*d) {
+    unsigned char code = *d++;
+    delims[code] = true;
+  }
+
+  std::string::const_iterator beg;
+  bool in_token = false;
+  for (std::string::const_iterator it = s.begin(), end = s.end(); it != end;
+       ++it) {
+    if ((size_t)(*it) >= delims.size()) break;
+    if (delims[*it]) {
+      if (in_token) {
+        output.push_back(typename C::value_type(beg, it));
+        in_token = false;
+        if (max_count != 0 && output.size() == max_count) {
+          // output.push_back(typename C::value_type(it, end));
+          break;
+        }
+      }
+      while (it != end && ((size_t)(*it) < delims.size() && delims[*it])) ++it;
+      if (it == end || (size_t)(*it) >= delims.size()) break;
+      --it;
+    } else if (!in_token) {
+      beg = it;
+      in_token = true;
+    }
+  }
+  if (in_token) output.push_back(typename C::value_type(beg, s.end()));
+  output.swap(*ret);
+}
+
+void test_string_to_double() {
+    std::cout << "*********** test_string_to_double begin **************\n";
+    std::string formula = "0,-0.1,2000";
+    vector<std::string> s_vec;
+    split_string(formula, ",", &s_vec);
+    double lrange = std::stod(s_vec[1]);
+    cout << std::stod(s_vec[1]) << "\n";
+    if (0 > lrange) {
+        cout << "get 0 smaple" << "\n";
+    }
+    cout << std::numeric_limits<float>::lowest() << "\n";
+
+    // for (std::string& tmp : s_vec) {
+    //     cout << tmp << "\n";
+    // }
+
+    std::cout << "*********** test_string_to_double end **************\n" << endl;
+}
+
 int main(int argc, char const *argv[])
 {
     // string a = "";
@@ -227,11 +283,13 @@ int main(int argc, char const *argv[])
     cout << each_num << "\n";
 
     std::unordered_set<string> visited_groups;
+    visited_groups.emplace();
+    std::max(1, 2);
     // uint64_t t = lexical_cast<uint64_t>("23456");
 
     test_int32_scope();
 
-    test_valid_play();
+    test_string_to_double();
 
     // bool is_visited = false;
     // cout << is_visited << "\n";
